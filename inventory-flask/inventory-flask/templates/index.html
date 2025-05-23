@@ -1,0 +1,1 @@
+<h2>Bem-vindo, {{ username }}!</h2><a href="/logout">Sair</a> | <a href="/movimentacoes">Ver Movimentações</a><h3>Itens no Estoque:</h3><table border="1">{% for item in items %}<tr><td>{{ item["item_id"] }}</td><td>{{ item["name"] }}</td><td>{{ item["quantity"] }}</td></tr>{% endfor %}</table>

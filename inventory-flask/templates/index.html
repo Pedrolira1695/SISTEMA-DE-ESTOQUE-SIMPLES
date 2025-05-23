@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <title>Controle de Estoque</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+   <h2>Bem-vindo, {{ username }}!</h2>
+<a href="/logout">Sair</a> | <a href="/movimentacoes">Ver movimentações</a>
+<h3>Itens no Estoque:</h3>
+<table border="1">
+<tr><th>ID</th><th>Nome</th><th>Quantidade</th></tr>
+{% for item in items %}
+<tr>
+    <td>{{ item['item_id'] }}</td>
+    <td>{{ item['name'] }}</td>
+    <td>{{ item['quantity'] }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<h3>Adicionar Item</h3>
+<form method="POST" action="/add_item">
+    ID: <input type="number" name="item_id"><br>
+    Nome: <input type="text" name="name"><br>
+    Quantidade: <input type="number" name="quantity"><br>
+    <button type="submit">Adicionar</button>
+</form>
+
+<h3>Remover Item</h3>
+<form method="POST" action="/remove_item">
+    ID: <input type="number" name="item_id"><br>
+    <button type="submit">Remover</button>
+</form>
+
+<h3>Atualizar Quantidade</h3>
+<form method="POST" action="/update_quantity">
+    ID: <input type="number" name="item_id"><br>
+    Quantidade: <input type="number" name="amount"><br>
+    <button type="submit">Atualizar</button>
+</form>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <ul style="color: red;">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    {% endwith %}
+</body>
+</html>

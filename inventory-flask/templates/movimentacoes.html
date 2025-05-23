@@ -1,0 +1,52 @@
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <title>Histórico de Movimentações - Controle de Estoque</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/moviment.css') }}">
+</head>
+<body>
+    <h2>Histórico de Movimentações</h2>
+    <a href="{{ url_for('index') }}">&larr; Voltar ao Estoque</a>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash-messages">
+          <ul>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Item ID</th>
+                <th>Usuário</th>
+                <th>Ação</th>
+                <th>Quantidade</th>
+                <th>Data / Hora</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in logs %}
+            <tr>
+                <td>{{ log['id'] }}</td>
+                <td>{{ log['item_id'] }}</td>
+                <td>{{ log['usuario'] }}</td>
+                <td>{{ log['acao'] }}</td>
+                <td>{{ log['quantidade'] }}</td>
+                <td>{{ log['data_hora'] }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6">Nenhuma movimentação encontrada.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

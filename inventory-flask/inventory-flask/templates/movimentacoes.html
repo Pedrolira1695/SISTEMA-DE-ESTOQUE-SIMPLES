@@ -1,0 +1,1 @@
+<h2>Movimentações</h2><a href="/">Voltar</a><table border="1">{% for log in logs %}<tr><td>{{ log["id"] }}</td><td>{{ log["item_id"] }}</td><td>{{ log["usuario"] }}</td><td>{{ log["acao"] }}</td><td>{{ log["quantidade"] }}</td><td>{{ log["data_hora"] }}</td></tr>{% endfor %}</table>
