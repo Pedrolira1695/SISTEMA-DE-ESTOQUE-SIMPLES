@@ -1,1 +1,2 @@
 # SISTEMA-DE-ESTOQUE-SIMPLES
+ngrok http 5000
